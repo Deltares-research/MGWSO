@@ -1,0 +1,16 @@
+{
+    "windows": {
+        "options": {
+            "shell": {
+            "executable": "cmd.exe",
+            "args": [
+                "/C",
+                // The path to VsDevCmd.bat depends on the version of Visual Studio you have installed.
+                "\"c:/Program Files/Microsoft Visual Studio/2022/Professional/Common7/Tools/VsDevCmd.bat\" -arch=x64 -host_arch=x64",
+                "&&"]
+            }
+        }
+    },
+    "tasks": [],
+    "version": "2.0.0"
+}

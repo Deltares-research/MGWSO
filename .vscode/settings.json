@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.in": "c",
+        "future": "cpp",
+        "system_error": "cpp"
+    }
+}

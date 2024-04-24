@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MGWSOLaunch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/src/Debug/mgwso.exe",
+            "args": ["--file=test.xml", "--model=test.wdi"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "environment": [
+                {
+                    "name": "Path", // add debug runtime files to path manually,  app won't run with sanitizers otherwise.... 
+                    "value": "c:/Program Files/Microsoft Visual Studio/2022/Professional/VC/Tools/MSVC/14.39.33519/bin/HostX64/x64;${env:Path};"
+                } 
+            ],
+          }
+    ]
+}
