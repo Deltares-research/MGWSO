@@ -46,6 +46,7 @@ add_library(mgwso::mgwso_warnings ALIAS mgwso_warnings)
 # configure files based on CMake configuration options
 add_subdirectory(configured_files)
 
+add_subdirectory(libs)
 # Adding the src:
 add_subdirectory(src)
 # Don't even look at tests if we're not top level
