@@ -4,6 +4,7 @@
 
 #include <CLI/CLI.hpp>
 #include <spdlog/spdlog.h>
+#include <wandamodel.h>
 
 
 // This file will be generated automatically when cur_you run the CMake
@@ -38,4 +39,11 @@ int main(int argc, const char **argv)
   catch (const std::exception &e) {
     spdlog::error("Unhandled exception in main: {}", e.what());
   }
+
+  auto model = wanda_model("test.wdi", "c:\\Program Files (x86)\\Deltares\\Wanda 4.7\\Bin\\");
+  for(const auto& item: model.get_all_pipes()){
+    spdlog::info("Pipe: {}", item->get_complete_name_spec());
+  }
+  model.close();
+  return EXIT_SUCCESS;
 }
