@@ -18,3 +18,10 @@ target_link_system_libraries(
           spdlog::spdlog)
 
 target_include_directories(mgwso PRIVATE "${CMAKE_BINARY_DIR}/configured_files/include")
+if (WIN32)
+  add_custom_command(
+    TARGET mgwso POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:mgwso> $<TARGET_FILE_DIR:mgwso>
+    COMMAND_EXPAND_LISTS
+  )
+endif()
