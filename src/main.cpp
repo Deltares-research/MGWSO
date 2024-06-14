@@ -40,10 +40,18 @@ int main(int argc, const char **argv)
     spdlog::error("Unhandled exception in main: {}", e.what());
   }
 
-  auto model = wanda_model("test.wdi", "c:\\Program Files (x86)\\Deltares\\Wanda 4.7\\Bin\\");
-  for(const auto& item: model.get_all_pipes()){
-    spdlog::info("Pipe: {}", item->get_complete_name_spec());
+  
+  try {
+    auto model = wanda_model("test.wdi", "c:\\Program Files (x86)\\Deltares\\Wanda 4.7\\Bin\\");
+    for(const auto& item: model.get_all_pipes()){
+      spdlog::info("Pipe: {}", item->get_complete_name_spec());
+    }
+    model.close();
+  } 
+  catch (const std::exception &e) {
+    spdlog::error("Unhandled exception in main: {}", e.what());
   }
-  model.close();
+
+  
   return EXIT_SUCCESS;
 }

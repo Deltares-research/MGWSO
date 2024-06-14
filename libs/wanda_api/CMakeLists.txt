@@ -37,9 +37,11 @@ target_link_libraries( wandaapi PRIVATE
 
 # Debug/Release libs
 target_link_libraries( wandaapi PRIVATE 
-optimized "${CMAKE_CURRENT_SOURCE_DIR}/lib/dauth/release/dauth.lib" "${CMAKE_CURRENT_SOURCE_DIR}/lib/dauth/release/dauth_client.lib"
+debug "${CMAKE_CURRENT_SOURCE_DIR}/lib/dauth/debug/dauth.lib" 
+optimized "${CMAKE_CURRENT_SOURCE_DIR}/lib/dauth/release/dauth.lib"
 )
 target_link_libraries( wandaapi PRIVATE 
-debug "${CMAKE_CURRENT_SOURCE_DIR}/lib/dauth/debug/dauth.lib" "${CMAKE_CURRENT_SOURCE_DIR}/lib/dauth/debug/dauth_client.lib"
+debug "${CMAKE_CURRENT_SOURCE_DIR}/lib/dauth/debug/dauth_client.lib"
+optimized "${CMAKE_CURRENT_SOURCE_DIR}/lib/dauth/release/dauth_client.lib"
 )
 
