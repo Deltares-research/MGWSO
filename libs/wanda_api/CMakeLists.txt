@@ -21,7 +21,7 @@ src/Wandaproperty.cpp
 src/Wandasigline.cpp
 )
 
-target_compile_definitions(wandaapi PRIVATE WANDAMODEL_EXPORT /std:c++latest /permissive- /W4 /w14640)
+target_compile_definitions(wandaapi PRIVATE WANDAMODEL_EXPORT /std:c++latest /permissive- /W4 /w14640 /wd4251 /wd4244)
 target_compile_definitions(wandaapi PUBLIC WANDAMODEL_EXPORT)
 
 #include paths needed
