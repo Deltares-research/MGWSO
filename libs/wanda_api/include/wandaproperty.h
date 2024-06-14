@@ -5,7 +5,8 @@
 #include <wanda_table.h>
 
 #ifdef WANDAMODEL_EXPORT
-#define WANDAMODEL_API __declspec(dllexport)
+// #define WANDAMODEL_API __declspec(dllexport)
+#define WANDAMODEL_API 
 #else
 #define WANDAMODEL_API __declspec(dllimport)
 #endif
