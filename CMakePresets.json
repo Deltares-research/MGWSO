@@ -35,7 +35,7 @@
             "cacheVariables": {
                 "ENABLE_CPPCHECK_DEFAULT": "FALSE",
                 "ENABLE_CLANG_TIDY_DEFAULT": "FALSE"
-            }
+            },
             "vendor": {
                 "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
                     "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
@@ -55,7 +55,7 @@
                     "Linux",
                     "Darwin"
                 ]
-            },
+            }
         },
         {
             "name": "windows-msvc-debug-developer-mode",
@@ -101,7 +101,7 @@
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl",
                 "CMAKE_CXX_COMPILER": "cl",
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+                "CMAKE_BUILD_TYPE": "Release",
                 "ENABLE_DEVELOPER_MODE": "OFF"
             }
         },
