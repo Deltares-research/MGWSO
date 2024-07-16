@@ -517,7 +517,6 @@ void nefis_file::get_string_element(const std::string &grpname, const std::strin
     {
         throw nefis_exception(this);
     }
-    std::string tempres = std::string(pt.get());
     for (auto j = 0; j < size2; j++)
     {
         for (auto i = 0; i < size1; i++)

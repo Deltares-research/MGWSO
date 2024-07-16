@@ -352,7 +352,7 @@ void wanda_model::save_table(wanda_table &table)
                                                            tab_key_vec);
                     wanda_input_file.write_string_elements("NUMCOLUMNS", "Column_key_next", {index + 1, index + 1, 1},
                                                            8, tab_key_next_vec);
-                    wanda_input_file.write_string_elements("NUMCOLUMNS", "Column_descr", {index + 1, index + 1, 1}, 16,
+                    wanda_input_file.write_string_elements("NUMCOLUMNS", "Column_descr", {index + 1, index + 1, 1}, 0,
                                                            descriptions);
                 }
             }
@@ -419,7 +419,7 @@ void wanda_model::save_table(wanda_table &table)
                                                            tab_key_vec);
                     wanda_input_file.write_string_elements("CHARCOLUMNS", "Column_key_next", {index + 1, index + 1, 1},
                                                            8, tab_key_next_vec);
-                    wanda_input_file.write_string_elements("CHARCOLUMNS", "Column_descr", {index + 1, index + 1, 1}, 16,
+                    wanda_input_file.write_string_elements("CHARCOLUMNS", "Column_descr", {index + 1, index + 1, 1}, 0,
                                                            descriptions);
                 }
             }
