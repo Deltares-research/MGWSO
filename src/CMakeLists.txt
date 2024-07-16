@@ -1,8 +1,9 @@
-add_executable(mgwso main.cpp)
+add_executable(mgwso main.cpp config.cpp ConvertUTF.c csv_file.cpp date_time.cpp open_da_property.cpp wanda.cpp)
 
 target_include_directories(mgwso PRIVATE 
   "${CMAKE_BINARY_DIR}/configured_files/include"
-  "$<TARGET_PROPERTY:wandaapi,INTERFACE_INCLUDE_DIRECTORIES>")
+  "$<TARGET_PROPERTY:wandaapi,INTERFACE_INCLUDE_DIRECTORIES>"
+  "d:/repos/wanda/MGWSO2/include")
 
 target_link_libraries(
   mgwso
