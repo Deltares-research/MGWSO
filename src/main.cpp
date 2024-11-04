@@ -35,6 +35,9 @@ int main(int argc, const char **argv)
     std::string const input_file = argv[1];
     spdlog::info("Loading ini file");
     config config_data(get_exe_path(), input_file);
+
+    spdlog::info("Deleting old output file");
+    delete_output_file(config_data.get_model_path());
     spdlog::info("Loading Wanda model");
     wanda_model model(config_data.get_model_path(), config_data.wanda_bin);
     spdlog::info("Preparing WANDA model");

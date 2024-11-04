@@ -30,3 +30,7 @@ void set_start_time_seawat(wanda_model& model, std::string start_time);
 //!@param end_time The end time of the simulation.
 //!@param time_step The time step of the simulation.
 void set_action_table(wanda_property& wanda_prop, open_da_property const& prop, date_time const& start_time, date_time const& end_time);
+
+//!Function to delete the output file of the Wanda model.
+//!@param model_path The path to the model file.
+void delete_output_file(std::string const& model_path);

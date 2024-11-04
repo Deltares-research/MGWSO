@@ -93,3 +93,11 @@ void set_action_table(wanda_property& wanda_prop, open_da_property const& prop, 
 
 }
 
+void delete_output_file(std::string const& model_path)
+{
+        std::string const output_file = model_path.substr(0, model_path.size() - 4) + ".wdo";
+        if (std::filesystem::exists(output_file))
+        {
+                std::filesystem::remove(output_file);
+        }
+}
