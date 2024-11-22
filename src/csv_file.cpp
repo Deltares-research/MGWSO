@@ -35,20 +35,26 @@ void csv_file::read_csv()
 
 std::vector<std::vector<float>> csv_file::get_time_series(date_time time_start, date_time time_end) const
 {
-  //TODO check start time and end time are within the bounds of the data
-  //TODO check if times are equal it does not seem to get it correct.
-	std::vector<float> res;
-	std::vector<float> time;
-	for (size_t i = 0; i < dates.size(); i++)
-	{
-		if (dates[i] >= time_start && dates[i] <= time_end)
-		{
-			res.push_back(data_value[i]);
-			time.push_back(float(dates[i].duration(time_start)));
-		}
-	}
-	std::vector<std::vector<float>> results;
-	results.push_back(time);
-	results.push_back(res);
-	return results;
+    if (time_start > time_end)
+    {
+        throw std::runtime_error("Start time is greater than end time");
+    }
+    if(time_start > dates.back() || time_end < dates.front())
+    {
+        throw std::runtime_error("Time range is outside of data range");
+    }
+    std::vector<float> res;
+    std::vector<float> time;
+    for (size_t i = 0; i < dates.size(); i++)
+    {
+	    if (dates[i] >= time_start && dates[i] <= time_end)
+	    {
+		    res.push_back(data_value[i]);
+		    time.push_back(float(dates[i].duration(time_start)));
+	    }
+    }
+    std::vector<std::vector<float>> results;
+    results.push_back(time);
+    results.push_back(res);
+    return results;
 }
