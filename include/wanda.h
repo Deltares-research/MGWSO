@@ -23,6 +23,11 @@ void set_wanda_property_table(wanda_property& wanda_prop, open_da_property prop)
 //!@param start_time The start time to set in the Wanda model.
 void set_start_time_seawat(wanda_model& model, std::string start_time);
 
+//!Function to check if the seawat files exist.
+//!@param base_path The base path to where the seawat files can be found.
+//!@param start_time The start time of the simulation for which it needs to be checked if seawat files are present.
+bool check_seawat_files(std::string base_path, std::string start_time);
+
 //!Function to set the action table in the Wanda model.
 //!@param wanda_prop The property in the Wanda model to be set.
 //!@param prop The property in the open_da_property class used to set the wanda property.

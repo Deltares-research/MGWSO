@@ -35,6 +35,8 @@ void csv_file::read_csv()
 
 std::vector<std::vector<float>> csv_file::get_time_series(date_time time_start, date_time time_end) const
 {
+  //TODO check start time and end time are within the bounds of the data
+  //TODO check if times are equal it does not seem to get it correct.
 	std::vector<float> res;
 	std::vector<float> time;
 	for (size_t i = 0; i < dates.size(); i++)

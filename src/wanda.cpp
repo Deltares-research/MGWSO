@@ -1,6 +1,7 @@
 #include "wanda.h"
 #include <filesystem>
 #include <stdexcept>
+#include <spdlog/spdlog.h>
 #include "date_time.h"
 
 void prepare_wanda_model(config config_data, wanda_model& model)
@@ -43,24 +44,34 @@ void prepare_wanda_model(config config_data, wanda_model& model)
 
 void set_start_time_seawat(wanda_model& model, std::string start_time)
 {
-	for(const auto comp: model.get_all_components())
-	{
-		if (comp->get_type_name() != "Heat filter pipe geoformation")
-		{
-			continue;
-		}
-		auto& table = comp->get_property("Time of SEAWAT resume").get_table();
-		std::vector<std::string> start_time_vector;
-		start_time_vector.push_back(start_time);
-		table.set_string_column("Time", start_time_vector);
-		// check if restart file exists
-		auto case_path = model.get_case_path();
-		//This assumes there is only one heat filter pipe in the model (which stores its seawat results in the HTO_001 folder)
-		std::string file_name = case_path.substr(0, case_path.size() - 4) + "\\HTO_001\\HTO_TEMP_" + start_time + ".ASC";
-		//if the file exists, the model will started from this file, otherwise it will be restarted from the beginning.
-		bool const restart = std::filesystem::exists(file_name);
-		comp->get_property("SEAWAT resume").set_scalar(restart? float(2.0):float(1.0));
-	}	
+    for(const auto comp: model.get_all_components())
+    {
+	    if (comp->get_type_name() != "Heat filter pipe geoformation")
+	    {
+		    continue;
+	    }
+	    auto& table = comp->get_property("Time of SEAWAT resume").get_table();
+	    std::vector<std::string> start_time_vector;
+	    start_time_vector.push_back(start_time);
+	    table.set_string_column("Time", start_time_vector);
+	    // check if restart file exists
+	    auto case_path = model.get_case_path();
+	    //This assumes there is only one heat filter pipe in the model (which stores its seawat results in the HTO_001 folder)
+	    std::string file_name = case_path.substr(0, case_path.size() - 4);
+	    //if the file exists, the model will started from this file, otherwise it will be restarted from the beginning.
+	    bool const restart = check_seawat_files(file_name, start_time);
+            if(!restart) {
+              spdlog::warn("SEAWAT restart file not found, starting from the beginning, this might give unstable behavior.");
+            }
+	    comp->get_property("SEAWAT resume").set_scalar(restart? float(2.0):float(1.0));
+    }
+}
+
+bool check_seawat_files(std::string base_path, std::string start_time)
+{
+  std::vector<std::string> seawat_files_extension = {"HTO_TEMP", "HTO_HEAD","HTO_HSALT","HTO_DCDT"};
+  return std::ranges::all_of(seawat_files_extension, [base_path, start_time](std::string extension)
+    { return std::filesystem::exists(base_path + "\\HTO_001\\" + extension + "_" + start_time + ".ASC"); });
 }
 
 void run_wanda_model(wanda_model& model)
