@@ -48,6 +48,7 @@ int main(int argc, const char **argv)
   } 
   catch (const std::exception &e) {
     spdlog::error("Unhandled exception in main: {}", e.what());
+    return EXIT_FAILURE;
   }
 
   

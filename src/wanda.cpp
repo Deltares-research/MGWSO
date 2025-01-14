@@ -61,7 +61,7 @@ void set_start_time_seawat(wanda_model& model, std::string start_time)
 	    //if the file exists, the model will started from this file, otherwise it will be restarted from the beginning.
 	    bool const restart = check_seawat_files(file_name, start_time);
             if(!restart) {
-              spdlog::warn("SEAWAT restart file not found, starting from the beginning, this might give unstable behavior.");
+              throw std::runtime_error("SEAWAT restart files not found, therefore simulation terminated.");
             }
 	    comp->get_property("SEAWAT resume").set_scalar(restart? float(2.0):float(1.0));
     }
