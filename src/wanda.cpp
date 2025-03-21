@@ -84,7 +84,7 @@ void run_wanda_model(wanda_model& model)
 void set_wanda_property_table(wanda_property& wanda_prop, open_da_property prop)
 {
 	auto& table = wanda_prop.get_table();
-	auto names = table.get_string_column("Name of geoformation");	
+	auto names = table.get_string_column("Name of geological formation");
 	auto ind = std::find(names.begin(), names.end(), prop.get_table_row_identifier());
 	
 	if (ind == names.end())
