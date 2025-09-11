@@ -19,7 +19,7 @@ int main(int argc, const char **argv)
 {
   try {
     CLI::App app{ fmt::format("{} version {}", mgwso::cmake::project_name, mgwso::cmake::project_version) };
-
+    spdlog::set_level(spdlog::level::debug);
     spdlog::info("Mooi-Goo Wanda Seawat OpenDA");
   }
   catch (const std::exception &e) {

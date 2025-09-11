@@ -8,7 +8,7 @@ class open_da_property
 public:
 	open_da_property(std::string comp_name, std::string property_name, float value) :
 		_comp_name(comp_name), _property_name(property_name), _value(value), _table_row_identifier(""),
-		_table_column_description(""), _csv_file("")
+		_table_column_description(""), _csv_file(""), float_type(true)
 	{};
 	open_da_property(std::string comp_name, std::string property_name, std::string csv_file_in) :
 		_comp_name(comp_name), _property_name(property_name), _value(0.0), _table_row_identifier(""),
@@ -19,7 +19,7 @@ public:
 	open_da_property(std::string comp_name, std::string property_name, std::string table_column_description,
 		std::string table_row_identifier, float value) :
 		_comp_name(comp_name),  _property_name(property_name), _table_column_description(table_column_description),
-		_table_row_identifier(table_row_identifier), _value(value), _csv_file("")
+		_table_row_identifier(table_row_identifier), _value(value), _csv_file(""), float_type(true)
 	{		
 	};
 	std::string get_comp_name() { return _comp_name;}
@@ -32,6 +32,7 @@ public:
 	{
 		return _csv_data.get_time_series(time_start, time_end);
 	}
+        const bool float_type = false;
 private:
 	std::string _comp_name;
 	std::string _property_name;
