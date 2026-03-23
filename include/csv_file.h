@@ -23,7 +23,8 @@ public:
 	//! @param time_end The end time for which the data should be returned
 	//! @return A vector of vectors with the first vector containing the time starting at zero at the starttime
 	//and the second vector containing the data value
-	std::vector<std::vector<float>> get_time_series(date_time time_start, date_time time_end) const;
+	std::vector<std::vector<float>> get_time_series(const date_time &time_start,
+                        const date_time &time_end) const;
 };
 
 //! Split a string into a vector of strings based on the given delimiter

@@ -1,6 +1,8 @@
 #pragma once
+
 #include "config.h"
 #include "wandamodel.h"
+#include "wanda_output.h"
 
 
 //!Function which sets the data in the wanda model.
@@ -39,3 +41,6 @@ void set_action_table(wanda_property& wanda_prop, open_da_property const& prop, 
 //!Function to delete the output file of the Wanda model.
 //!@param model_path The path to the model file.
 void delete_output_file(std::string const& model_path);
+
+//!function to store output of the calculation into a csv file.
+void store_output(wanda_model& model, const std::vector<WandaOutput> & outputs);

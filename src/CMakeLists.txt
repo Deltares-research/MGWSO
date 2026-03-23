@@ -1,4 +1,5 @@
-add_executable(mgwso main.cpp config.cpp ConvertUTF.c csv_file.cpp date_time.cpp open_da_property.cpp wanda.cpp)
+add_executable(mgwso main.cpp config.cpp ConvertUTF.c csv_file.cpp date_time.cpp open_da_property.cpp wanda.cpp
+        ../include/wanda_output.h)
 
 target_include_directories(mgwso PRIVATE 
   "${CMAKE_BINARY_DIR}/configured_files/include"

@@ -33,7 +33,8 @@ void csv_file::read_csv()
 	}
 }
 
-std::vector<std::vector<float>> csv_file::get_time_series(date_time time_start, date_time time_end) const
+std::vector<std::vector<float>> csv_file::get_time_series(const date_time &time_start,
+                          const date_time &time_end) const
 {
     if (time_start > time_end)
     {

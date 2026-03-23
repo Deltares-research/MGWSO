@@ -44,6 +44,8 @@ int main(int argc, const char **argv)
     prepare_wanda_model(config_data, model);
     spdlog::info("Running WANDA model");
     run_wanda_model(model);
+    spdlog::info("Storing output");
+    store_output(model, config_data.wanda_outputs);
     model.close();
   } 
   catch (const std::exception &e) {

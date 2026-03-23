@@ -25,7 +25,9 @@ config::config(std::string _file_path, std::string const& config_file)
 	spdlog::debug("Parsing properties");
 	parse_properties(config_file_data);
 	spdlog::debug("Finished parsing properties");
-
+	spdlog::debug("Parsing output properties");
+        parse_output_properties(config_file_data);
+        spdlog::debug("Finished parsing output properties");
         const fs::path output_path = config_file + ".csv";
         spdlog::info("outputting to " + output_path.string());
         bool write_header = false;
@@ -99,4 +101,19 @@ void config::parse_general_data(CSimpleIniA const& config_data)
 	simulation_time_step = std::stoi(config_data.GetValue(general_key.c_str(), "timeStep"));
 	wanda_bin = config_data.GetValue(general_key.c_str(), "wandaBin");
 	wanda_case = config_data.GetValue(general_key.c_str(), "wandaModel");
+}
+
+void config::parse_output_properties(CSimpleIniA const &config_data) {
+  CSimpleIniA::TNamesDepend keys;
+  std::string const parameter_key = "outputs";
+  config_data.GetAllKeys(parameter_key.c_str(), keys);
+  for (const auto& element :keys ) {
+    spdlog::debug(element.pItem);
+    auto splitted_string = split_string(element.pItem, '.');
+    if (splitted_string.size() != 2) {
+      throw std::runtime_error("Unsupported number of elements in output list of ini file");
+    }
+    const auto value_string = std::string(config_data.GetValue(parameter_key.c_str(), element.pItem));
+    wanda_outputs.emplace_back(WandaOutput{splitted_string[0], splitted_string[1], value_string} );
+  }
 }

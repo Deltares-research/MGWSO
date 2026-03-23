@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include <spdlog/spdlog.h>
 #include "date_time.h"
+#include <algorithm>
+#include <fstream>
 
 void prepare_wanda_model(config config_data, wanda_model& model)
 {
@@ -111,4 +113,17 @@ void delete_output_file(std::string const& model_path)
         {
                 std::filesystem::remove(output_file);
         }
+}
+void store_output(wanda_model &model,
+                  const std::vector<WandaOutput> &outputs) {
+  for (const auto &[comp_name, property_name, file_name] : outputs) {
+    std::ofstream output_stream(file_name, std::ios::app);
+    auto& property = model.get_component(comp_name).get_property(property_name);
+    auto data = property.get_series();
+    for (const auto & value: data) {
+      output_stream << value;
+      output_stream << '\n';
+    }
+    output_stream.close();
+  }
 }
